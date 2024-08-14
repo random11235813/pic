@@ -14,7 +14,5 @@ scrape_configs:
   - job_name: 'linux'
     static_configs:
       - targets: ['140.245.78.136:9100']
-  - job_name: 'linux1'
-    static_configs:
       - targets: ['144.24.87.69:9100']
 
