@@ -9,7 +9,7 @@ scrape_configs:
   # 重写了全局抓取间隔时间，由60秒重写成30秒
     scrape_interval: 30s
     static_configs:
-      - targets: ['140.245.78.136:9090']
+      - targets: ['144.24.87.69:9090']
   - job_name: 'linux'
     static_configs:
-      - targets: ['140.245.78.136:9100']
+      - targets: ['144.24.87.69:9100']
