@@ -1,10 +1,12 @@
-version: '3'
+version: "3.3"
+
 services:
-  nezha-dashboard: 
+  dashboard:
     image: ghcr.io/naiba/nezha-dashboard:v0.20.13
+    container_name: nezha
     restart: always
     volumes:
-      - /opt/nezha/data:/dashboard/data #/docker-volume/nezha/data为自定义宿主机映射目录
+      - ./data:/dashboard/data
     ports:
-      - 8008:8008
-      - 5555:5555
+    - 8008:8008
+    - 5555:5555
