@@ -1,12 +1,18 @@
-version: '3'
 services:
-  app:
-    image: 'jc21/nginx-proxy-manager:latest'
-    restart: unless-stopped
-    ports:
-      - '80:80'              # 不建议修改端口
-      - '81:81'              # 可以把冒号左边的 81 端口修改成你服务器上没有被占用的端口
-      - '443:443'            # 不建议修改端口
+  nseek-monitor:
+    image: dajie000/rss_nodeseek:latest
+    container_name: rss_nodeseek
+    restart: always
+    environment:
+      - TG_BOT_TOKEN=123 # 填写Telegram机器人的Token(不需要引号) 把123替换成你自己的
+      - TG_CHAT_ID=123 # 填写接收通知的Telegram聊天ID(不需要引号) 把123替换成你自己的
+      - CHECK_MIN_INTERVAL=20 # 最小检查间隔（秒）修改检测时间，需停止容器 在 启动容器 才会生效。
+      - CHECK_MAX_INTERVAL=40 # 最大检查间隔（秒）修改检测时间，需停止容器 在 启动容器 才会生效。
+      - TZ=Asia/Shanghai
     volumes:
-      - ./data:/data         # 点号表示当前文件夹，冒号左边的意思是在当前文件夹下创建一个 data 目录，用于存放数据，如果不存在的话，会自动创建
-      - ./letsencrypt:/etc/letsencrypt  # 点号表示当前文件夹，冒号左边的意思是在当前文件夹下创建一个 letsencrypt 目录，用于存放证书，如果不存在的话，会自动创建
+      - ./data:/data # 挂载本地当前目录的data文件夹到容器内的/data目录（用于持久化存储数据）日志monitor.log 关键词config.json
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m" #这样每个容器日志最大 5MB，最多保留 1 个文件。
+        max-file: "1" # 最多保留 1 个文件。
