@@ -12,17 +12,17 @@ services:
       - ./uploads:/dujiaoka/public/uploads
       - ./storage:/dujiaoka/storage
     ports:
-      - 8090:80         # 8090可以改成任意服务器没有使用过的端口，80不要修改
+      - 9090:80         # 8090可以改成任意服务器没有使用过的端口，80不要修改
     restart: always
  
   db:
     image: mariadb:focal
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=changeyourpassword
+      - MYSQL_ROOT_PASSWORD=randomO0
       - MYSQL_DATABASE=dujiaoka
       - MYSQL_USER=dujiaoka
-      - MYSQL_PASSWORD=changeyourpassword
+      - MYSQL_PASSWORD=randomO0
     volumes:
       - ./mysql:/var/lib/mysql
 
